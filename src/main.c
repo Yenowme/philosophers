@@ -6,44 +6,37 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:15:22 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/10 17:35:52 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/10 18:50:23 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-// 뮤텍스 객체 선언
- 
-pthread_mutex_t mutex_lock;
-int g_count = 0;  // 쓰레드 공유자원.
- 
-void *t_function(void *data)
-{
-    int i;
-    char* thread_name = (char*)data;
-    // critical section
 
-	pthread_mutex_lock(&mutex_lock);
-	
-    g_count = 0;   // 쓰레드마다 0부터 시작.
-    for (i = 0; i < 3; i++)
-    {
-        printf("%s COUNT %d\n", thread_name, g_count);
-        g_count++;  // 쓰레드 공유자원, 1증가.
-    }
-	pthread_mutex_unlock(&mutex_lock);
-	return (void *)NULL;
+int	err_return(char *str)
+{
+	printf("Error\n");
+	printf("%s", str);
+	return (-1);
 }
 
-int main()
+int	init_table(char **argv, t_table *table)
 {
-    pthread_t p_thread1, p_thread2;
-    int status;
- 
-	pthread_mutex_init(&mutex_lock, NULL);
-    pthread_create(&p_thread1, NULL, t_function, (void *)"Thread1");
-    pthread_create(&p_thread2, NULL, t_function, (void *)"Thread2");
- 
-    pthread_join(p_thread1, (void *)&status);
-    pthread_join(p_thread2, (void *)&status);
+	memset(table, 0, sizeof(t_table));
+	table->philo_num = ft_atoi(argv[1]);
+	table->time_to_die = ft_atoi(argv[2]);
+	table->time_to_eat = ft_atoi(argv[3]);
+	table->time_to_sleep = ft_atoi(argv[4]);
+	if (argv[5])
+		table->must_eat_num = ft_atoi(argv[5]);
+	return (0);
 }
 
+int	main(int argc, char **argv)
+{
+	t_table	table;
+
+	if (argc != 5 && argc != 6)
+		return (err_return("The number of arguments must be four or five."));
+	if (init_table(argv, &table))
+		return (err_return("Faile to init data."));
+}

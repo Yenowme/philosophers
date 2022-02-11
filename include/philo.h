@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:15:58 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/10 17:40:13 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/10 18:39:21 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,21 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <string.h>
+typedef struct s_philo
+{
+	int		id;
+	int		eat_cnt;
+}	t_philo;
+typedef struct s_table
+{
+	int			philo_num;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
+	int			must_eat_num;
+	long long	start_time;
+	t_philo		*phillo
+}	t_table;
 
 #endif
