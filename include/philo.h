@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:15:58 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/12 18:03:33 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/23 21:01:40 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,9 @@ typedef struct s_table
 
 int		err_return(char *str);
 int		ft_atoi(const char *str);
+
+int		init_struct(char **argv, t_table *table);
+int		init_thread_and_mutex(t_table *table);
+int		init_table(char **argv, t_table *table);
 
 #endif
