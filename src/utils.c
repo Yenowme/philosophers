@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:56:10 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/11 20:52:40 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/24 21:45:57 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,12 @@ int	ft_atoi(const char *str)
 	return ((int)rt * sum);
 }
 
+long long	get_time(void)
+{
+	struct timeval	time;
+	long long		ms;
+
+	gettimeofday(&time, NULL);
+	ms = (time.tv_sec * 1000) + (time.tv_usec / 1000);
+	return (ms);
+}
