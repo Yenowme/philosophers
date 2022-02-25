@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 17:47:38 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/25 00:30:47 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/25 14:50:56 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,24 @@ int	monitor(t_table *table)
 		i = 0;
 		while (i < table->philo_num)
 		{
+			//printf("%d", table->exit);
 			if (table->philo[i].eat_start == 0)
 				starve_time = table->start_time;
 			else
 				starve_time = table->philo[i].eat_start;
 			if (get_time() - starve_time >= table->time_to_die)
 			{
-				table->exit = TRUE;
 				print_philo(&table->philo[i], get_time(),
 					" \x1B[31mis dead\x1B[0m\n");
+				table->exit = TRUE;
 				return (free_philo(table));
 			}
-			if (table->philo[i].eat_cnt >= table->must_eat_num)
+			if (table->must_eat_num != -1 && table->philo[i].eat_cnt >= table->must_eat_num)
 				table->eat_philo_cnt++;
-			usleep(10);
+			usleep(1000);
 			i++;
 		}
-		if (table->must_eat_num != -1 && table->eat_philo_cnt == table->philo_num)
+		if (table->eat_philo_cnt == table->philo_num)
 		{
 			table->exit = TRUE;
 			printf("philosophers are full~\n");

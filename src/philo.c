@@ -6,19 +6,11 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:52:39 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/25 00:26:15 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/25 15:07:50 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
-//static void	philo_print(char *str, t_table *table)
-//{
-//	pthread_mutex_lock(&table->print);
-//	printf("%s", str);
-//	printf("%d", table->must_eat_num);
-//	pthread_mutex_unlock(&table->print);
-//}
 
 static void	*ft_thread(void *philo_void)
 {
@@ -26,7 +18,7 @@ static void	*ft_thread(void *philo_void)
 
 	philo = (t_philo *)philo_void;
 	if (philo->id % 2 == 0)
-		usleep(1000);
+		usleep(philo->table->time_to_eat * 500);
 	while (philo->table->exit == FALSE)
 	{
 		eatting(philo);
