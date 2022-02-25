@@ -1,33 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 15:15:22 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/25 20:58:11 by jeong-yena       ###   ########.fr       */
+/*   Created: 2022/02/25 20:46:07 by jeong-yena        #+#    #+#             */
+/*   Updated: 2022/02/25 20:57:40 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	err_return(char *str)
+static int	is_num(char c)
 {
-	printf("Error\n");
-	printf("%s", str);
-	return (-1);
+	return ('0' <= c && c <= '9');
 }
 
-int	main(int argc, char **argv)
+static int	valid_arg(int argc, char **argv)
 {
-	t_table	table;
+	int	i;
+	int	j;
 
-	if (!validate(argc, argv))
-		return (err_return("Invalid arguments."));
-	if (init(argv, &table))
-		return (err_return("Faile to init data."));
-	if (philo_start(&table))
-		return (err_return("Faile to start philo"));
-	return (monitor(&table));
+	i = 0;
+	while (++i < argc)
+	{
+		j = -1;
+		while (argv[i][++j])
+		{
+			if (!is_num(argv[i][j]))
+				return (FALSE);
+		}
+	}
+	return (TRUE);
+}
+
+int	validate(int argc, char **argv)
+{
+	if (argc != 5 && argc != 6)
+		return (FALSE);
+	if (!valid_arg(argc, argv))
+		return (FALSE);
+	return (TRUE);
 }
