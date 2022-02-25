@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 17:47:38 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/25 14:50:56 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/25 15:13:57 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ int	monitor(t_table *table)
 		i = 0;
 		while (i < table->philo_num)
 		{
-			//printf("%d", table->exit);
 			if (table->philo[i].eat_start == 0)
 				starve_time = table->start_time;
 			else
 				starve_time = table->philo[i].eat_start;
 			if (get_time() - starve_time >= table->time_to_die)
 			{
+				pthread_mutex_lock(&table->print);
 				print_philo(&table->philo[i], get_time(),
 					" \x1B[31mis dead\x1B[0m\n");
 				table->exit = TRUE;
@@ -73,7 +73,6 @@ int	monitor(t_table *table)
 		if (table->eat_philo_cnt == table->philo_num)
 		{
 			table->exit = TRUE;
-			printf("philosophers are full~\n");
 			return (free_philo(table));
 		}
 		table->eat_philo_cnt = 0;
