@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:17:56 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/25 15:11:54 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/25 15:48:38 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	eatting(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->fork[philo->left]);
 	pthread_mutex_lock(&philo->table->print);
-	print_philo(philo, get_time(), "\x1B[32mis taken a fork\x1B[0m");
+	print_philo(philo, get_time(), "\x1B[32mhas taken a fork\x1B[0m");
 	pthread_mutex_lock(&philo->table->fork[philo->right]);
 	pthread_mutex_lock(&philo->table->print);
-	print_philo(philo, get_time(), "\x1B[32mis taken a fork\x1B[0m");
+	print_philo(philo, get_time(), "\x1B[32mhas taken a fork\x1B[0m");
 	pthread_mutex_lock(&philo->table->print);
 	print_philo(philo, get_time(), "\x1B[33mis eating\x1B[0m");
 	philo->eat_start = get_time();

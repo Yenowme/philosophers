@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:56:10 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/24 21:45:57 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/25 20:17:24 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,22 @@ long long	get_time(void)
 	gettimeofday(&time, NULL);
 	ms = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	return (ms);
+}
+
+int	free_philo(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->philo_num)
+	{
+		pthread_mutex_destroy(&table->fork[i]);
+		if (pthread_join(table->philo[i].philo, NULL))
+			return (-1);
+		i++;
+	}
+	pthread_mutex_destroy(&table->print);
+	free(table->philo);
+	free(table->fork);
+	return (0);
 }

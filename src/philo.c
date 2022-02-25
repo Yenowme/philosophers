@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:52:39 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/25 15:07:50 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/25 20:19:29 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	*ft_thread(void *philo_void)
 		sleeping(philo);
 		thinking(philo);
 	}
-	return ((void *)NULL);
+	return ((void *) NULL);
 }
 
 int	philo_start(t_table *table)
@@ -42,7 +42,5 @@ int	philo_start(t_table *table)
 		i++;
 	}
 	i = 0;
-
 	return (0);
 }
-

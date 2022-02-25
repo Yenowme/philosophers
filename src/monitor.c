@@ -6,40 +6,43 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 17:47:38 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/25 15:13:57 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/25 20:18:58 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-
-long long	ft_time(void)
+static long long	set_starve_time(t_table *table, int id)
 {
-	struct timeval	time;
-	long long		ms;
+	long long	starve_time;
 
-	gettimeofday(&time, NULL);
-	ms = (time.tv_sec * 1000) + (time.tv_usec / 1000);
-	return (ms);
+	if (table->philo[id].eat_start == 0)
+		starve_time = table->start_time;
+	else
+		starve_time = table->philo[id].eat_start;
+	return (starve_time);
 }
 
-
-int	free_philo(t_table *table)
+static int	return_full(t_table *table)
 {
-	int	i;
+	table->exit = TRUE;
+	return (free_philo(table));
+}
 
-	i = 0;
-	while (i < table->philo_num)
-	{
-		pthread_mutex_destroy(&table->fork[i]);
-		if (pthread_join(table->philo[i].philo, NULL))
-			return (-1);
-		i++;
-	}
-	pthread_mutex_destroy(&table->print);
-	free(table->philo);
-	free(table->fork);
-	return (0);
+static int	return_die(t_table *table, int id)
+{
+	pthread_mutex_lock(&table->print);
+	print_philo(&table->philo[id], get_time(),
+		" \x1B[31mis dead\x1B[0m\n");
+	table->exit = TRUE;
+	return (free_philo(table));
+}
+
+static void	check_philo_eat(t_table *table, int id)
+{
+	if (table->must_eat_num != -1
+		&& table->philo[id].eat_cnt >= table->must_eat_num)
+		table->eat_philo_cnt++;
 }
 
 int	monitor(t_table *table)
@@ -50,31 +53,17 @@ int	monitor(t_table *table)
 	table->eat_philo_cnt = 0;
 	while (TRUE)
 	{
-		i = 0;
-		while (i < table->philo_num)
+		i = -1;
+		while (++i < table->philo_num)
 		{
-			if (table->philo[i].eat_start == 0)
-				starve_time = table->start_time;
-			else
-				starve_time = table->philo[i].eat_start;
+			starve_time = set_starve_time(table, i);
 			if (get_time() - starve_time >= table->time_to_die)
-			{
-				pthread_mutex_lock(&table->print);
-				print_philo(&table->philo[i], get_time(),
-					" \x1B[31mis dead\x1B[0m\n");
-				table->exit = TRUE;
-				return (free_philo(table));
-			}
-			if (table->must_eat_num != -1 && table->philo[i].eat_cnt >= table->must_eat_num)
-				table->eat_philo_cnt++;
+				return (return_die(table, i));
+			check_philo_eat(table, i);
 			usleep(1000);
-			i++;
 		}
 		if (table->eat_philo_cnt == table->philo_num)
-		{
-			table->exit = TRUE;
-			return (free_philo(table));
-		}
+			return (return_full(table));
 		table->eat_philo_cnt = 0;
 	}
 	return (0);

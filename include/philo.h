@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:15:58 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/25 14:16:50 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/25 20:18:15 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,15 @@ typedef struct s_table
 int			err_return(char *str);
 int			ft_atoi(const char *str);
 long long	get_time(void);
+int			free_philo(t_table *table);
 
 int			init(char **argv, t_table *table);
 
 int			philo_start(t_table *table);
 long long	ft_time(void);
-int			free_philo(t_table *table);
 
-void		eatting(t_philo *philo);
 void		print_philo(t_philo *philo, long long time, char *str);
+void		eatting(t_philo *philo);
 void		sleeping(t_philo *philo);
 void		thinking(t_philo *philo);
 

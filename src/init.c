@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 21:00:08 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/24 20:34:58 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/25 20:19:13 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,4 @@ int	init(char **argv, t_table *table)
 	if (init_philo(table) == -1)
 		return (-1);
 	return (0);
-	//return (monitor_philo(table));
 }
