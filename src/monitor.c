@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 17:47:38 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/25 20:18:58 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/28 15:56:07 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	monitor(t_table *table)
 	while (TRUE)
 	{
 		i = -1;
+		if (table->philo_num == 1)
+			return (free_philo(table));
 		while (++i < table->philo_num)
 		{
 			starve_time = set_starve_time(table, i);
