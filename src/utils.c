@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:56:10 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/25 20:17:24 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/28 16:26:25 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static unsigned long	atoi_sub(const char *str)
 	return (rt);
 }
 
-int	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
 	int				i;
 	int				sum;
@@ -52,7 +52,7 @@ int	ft_atoi(const char *str)
 		return (-1);
 	else if (sum == -1 && rt > 9223372036854775807)
 		return (0);
-	return ((int)rt * sum);
+	return (rt * sum);
 }
 
 long long	get_time(void)
@@ -81,4 +81,14 @@ int	free_philo(t_table *table)
 	free(table->philo);
 	free(table->fork);
 	return (0);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

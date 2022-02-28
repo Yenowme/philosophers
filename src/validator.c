@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 20:46:07 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/25 20:57:40 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/28 17:52:26 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ static int	valid_arg(int argc, char **argv)
 		}
 	}
 	return (TRUE);
+}
+
+int	validate_atoi(char *str)
+{
+	long long	num;
+
+	if (ft_strlen(str) > 10)
+		return (-2);
+	num = ft_atoi(str);
+	if (num < 0 || num > 2147483647)
+		return (-2);
+	return (num);
 }
 
 int	validate(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 21:00:08 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/25 20:19:13 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/28 17:52:49 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 static int	init_struct(char **argv, t_table *table)
 {
 	memset(table, 0, sizeof(t_table));
-	table->philo_num = ft_atoi(argv[1]);
-	table->time_to_die = ft_atoi(argv[2]);
-	table->time_to_eat = ft_atoi(argv[3]);
-	table->time_to_sleep = ft_atoi(argv[4]);
+	table->philo_num = validate_atoi(argv[1]);
+	table->time_to_die = validate_atoi(argv[2]);
+	table->time_to_eat = validate_atoi(argv[3]);
+	table->time_to_sleep = validate_atoi(argv[4]);
 	table->must_eat_num = -1;
 	if (argv[5])
-		table->must_eat_num = ft_atoi(argv[5]);
+		table->must_eat_num = validate_atoi(argv[5]);
+	if (table->philo_num == -2 || table->philo_num < 1
+		|| table->time_to_die == -2 || table->time_to_eat == -2
+		|| table->time_to_sleep == -2 || table->must_eat_num == -2)
+		return (-1);
 	return (0);
 }
 

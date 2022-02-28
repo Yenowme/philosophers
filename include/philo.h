@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:15:58 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/25 20:56:00 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/02/28 17:50:48 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,12 @@ typedef struct s_table
 }	t_table;
 
 int			err_return(char *str);
-int			ft_atoi(const char *str);
+long long	ft_atoi(const char *str);
 long long	get_time(void);
 int			free_philo(t_table *table);
+size_t		ft_strlen(const char *s);
+
+int	validate_atoi(char *str);
 
 int			init(char **argv, t_table *table);
 
