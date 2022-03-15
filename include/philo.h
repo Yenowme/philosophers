@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
+/*   By: yejeong <yejeong@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:15:58 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/28 17:50:48 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/03/15 16:28:34 by yejeong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ long long	get_time(void);
 int			free_philo(t_table *table);
 size_t		ft_strlen(const char *s);
 
-int	validate_atoi(char *str);
+int			validate_atoi(char *str);
 
 int			init(char **argv, t_table *table);
 
