@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejeong <yejeong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 17:47:38 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/03/15 16:47:35 by yejeong          ###   ########.fr       */
+/*   Updated: 2022/05/04 20:32:06 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ static long long	set_starve_time(t_table *table, int id)
 
 static int	return_full(t_table *table)
 {
+	pthread_mutex_lock(&table->print);
 	table->exit = TRUE;
+	pthread_mutex_unlock(&table->print);
 	return (free_philo(table));
 }
 
@@ -33,7 +35,7 @@ static int	return_die(t_table *table, int id)
 {
 	pthread_mutex_lock(&table->print);
 	print_philo(&table->philo[id], get_time(),
-		"\x1B[31mis dead\x1B[0m\n");
+		"\x1B[31mdied\x1B[0m\n");
 	table->exit = TRUE;
 	pthread_mutex_unlock(&table->print);
 	return (free_philo(table));

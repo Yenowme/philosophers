@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   behavior.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yejeong <yejeong@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 21:17:56 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/03/15 16:44:27 by yejeong          ###   ########.fr       */
+/*   Updated: 2022/05/04 20:26:47 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	eatting(t_philo *philo)
 	pthread_mutex_unlock(&philo->table->print);
 	pthread_mutex_lock(&philo->table->print);
 	print_philo(philo, get_time(), "\x1B[33mis eating\x1B[0m");
-	pthread_mutex_unlock(&philo->table->print);
 	philo->eat_start = get_time();
+	pthread_mutex_unlock(&philo->table->print);
 	while (get_time() - philo->eat_start
 		< philo->table->time_to_eat)
 		usleep(1000);
+	philo->eat_cnt++;
 	pthread_mutex_unlock(&philo->table->fork[philo->left]);
 	pthread_mutex_unlock(&philo->table->fork[philo->right]);
-	philo->eat_cnt++;
 }
 
 void	sleeping(t_philo *philo)

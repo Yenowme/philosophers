@@ -6,13 +6,13 @@
 #    By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/11 18:54:27 by jeong-yena        #+#    #+#              #
-#    Updated: 2022/02/25 20:56:14 by jeong-yena       ###   ########.fr        #
+#    Updated: 2022/04/14 15:30:37 by jeong-yena       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME					= philo
 
-CC						= gcc
+CC						= clang
 CFLAGS					= -Wall -Werror -Wextra
 AR						= ar rcs
 RM						= rm -f

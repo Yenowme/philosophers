@@ -6,7 +6,7 @@
 /*   By: jeong-yena <jeong-yena@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:56:10 by jeong-yena        #+#    #+#             */
-/*   Updated: 2022/02/28 16:26:25 by jeong-yena       ###   ########.fr       */
+/*   Updated: 2022/04/14 16:36:15 by jeong-yena       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ int	free_philo(t_table *table)
 	while (i < table->philo_num)
 	{
 		pthread_mutex_destroy(&table->fork[i]);
-		if (pthread_join(table->philo[i].philo, NULL))
-			return (-1);
+		pthread_join(table->philo[i].philo, NULL);
 		i++;
 	}
 	pthread_mutex_destroy(&table->print);
